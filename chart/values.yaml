@@ -1,0 +1,19 @@
+image:
+  repository: gururepservice/squidstack-e2e-tests
+  tag: latest
+  pullPolicy: IfNotPresent
+
+baseUrl: "https://squid-demo-3.guru-rep.sa-demo.beescloud.com"
+
+job:
+  backoffLimit: 1
+  ttlSecondsAfterFinished: 300
+  restartPolicy: Never
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
