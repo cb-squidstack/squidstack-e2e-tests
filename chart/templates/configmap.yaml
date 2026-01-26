@@ -6,7 +6,7 @@ metadata:
     app: {{ .Chart.Name }}
     release: {{ .Release.Name }}
 data:
-{{- range $path, $_ := .Files.Glob "tests/*.spec.js" }}
-  {{ base $path }}: |
+{{- range $path, $_ := .Files.Glob "tests/**/*.spec.js" }}
+  {{ trimPrefix "tests/" $path }}: |
 {{ $.Files.Get $path | indent 4 }}
 {{- end }}
