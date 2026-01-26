@@ -7,8 +7,8 @@ baseUrl: "https://squid-demo-3.guru-rep.sa-demo.beescloud.com"
 
 resources:
   limits:
+    cpu: 2000m
+    memory: 4Gi
+  requests:
     cpu: 1000m
     memory: 2Gi
-  requests:
-    cpu: 500m
-    memory: 1Gi
