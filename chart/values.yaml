@@ -1,14 +1,9 @@
 image:
   repository: gururepservice/squidstack-e2e-tests
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 baseUrl: "https://squid-demo-3.guru-rep.sa-demo.beescloud.com"
-
-job:
-  backoffLimit: 1
-  ttlSecondsAfterFinished: 300
-  restartPolicy: Never
 
 resources:
   limits:

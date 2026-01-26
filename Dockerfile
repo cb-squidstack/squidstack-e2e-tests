@@ -11,9 +11,8 @@ RUN npm ci
 # Install Playwright browsers
 RUN npx playwright install chromium
 
-# Copy test files and config
+# Copy playwright config (tests will come from ConfigMap)
 COPY playwright.config.js ./
-COPY tests/ ./tests/
 
-# Run tests by default
-CMD ["npm", "test"]
+# Keep container running - tests will be executed via kubectl exec
+CMD ["tail", "-f", "/dev/null"]

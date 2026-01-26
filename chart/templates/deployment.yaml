@@ -1,24 +1,22 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: {{ .Release.Name }}-e2e-tests
   labels:
     app: {{ .Chart.Name }}
     release: {{ .Release.Name }}
-  annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-weight: "0"
-    helm.sh/hook-delete-policy: before-hook-creation
 spec:
-  backoffLimit: {{ .Values.job.backoffLimit }}
-  ttlSecondsAfterFinished: {{ .Values.job.ttlSecondsAfterFinished }}
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ .Chart.Name }}
         release: {{ .Release.Name }}
     spec:
-      restartPolicy: {{ .Values.job.restartPolicy }}
       containers:
       - name: playwright-tests
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -35,3 +33,11 @@ spec:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
             memory: {{ .Values.resources.requests.memory }}
+        volumeMounts:
+        - name: test-scripts
+          mountPath: /app/tests
+          readOnly: true
+      volumes:
+      - name: test-scripts
+        configMap:
+          name: {{ .Release.Name }}-tests
