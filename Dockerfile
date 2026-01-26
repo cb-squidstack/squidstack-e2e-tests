@@ -11,7 +11,7 @@ RUN npm ci
 # Install Playwright browsers
 RUN npx playwright install chromium
 
-# Copy playwright config (tests will come from ConfigMap)
+# Copy playwright config (tests come from ConfigMap)
 COPY playwright.config.js ./
 
 # Keep container running - tests will be executed via kubectl exec
