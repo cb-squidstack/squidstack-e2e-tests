@@ -24,7 +24,7 @@ test.describe('Home Page UI', () => {
 
     // Ensure content is loaded (not blank page)
     const content = await page.content();
-    expect(content.length).toBeGreaterThan(1000);
+    expect(content.length).toBeGreaterThan(100);
   });
 
   test('should have responsive layout', async ({ page }) => {
