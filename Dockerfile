@@ -11,9 +11,9 @@ RUN npm ci
 # Install Playwright browsers
 RUN npx playwright install chromium
 
-# Install CloudBees Smart Tests (Launchable) CLI
+# Install CloudBees Smart Tests (Launchable) CLI and git
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip openjdk-17-jre-headless && \
+    apt-get install -y python3 python3-pip openjdk-17-jre-headless git && \
     pip3 install launchable && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
