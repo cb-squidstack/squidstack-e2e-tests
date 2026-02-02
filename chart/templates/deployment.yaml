@@ -33,11 +33,3 @@ spec:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
             memory: {{ .Values.resources.requests.memory }}
-        volumeMounts:
-        - name: test-scripts
-          mountPath: /app/tests
-          readOnly: true
-      volumes:
-      - name: test-scripts
-        configMap:
-          name: {{ .Release.Name }}-tests
